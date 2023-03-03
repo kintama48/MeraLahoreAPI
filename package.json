@@ -1,0 +1,23 @@
+{
+  "name": "meralahoreapi",
+  "version": "1.0.0",
+  "description": "This is the API for MeraLahore Android App that handles the database operations and sends KML data to the App.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kintama48/MeraLahoreAPI.git"
+  },
+  "author": "kintama48",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kintama48/MeraLahoreAPI/issues"
+  },
+  "homepage": "https://github.com/kintama48/MeraLahoreAPI#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0"
+  }
+}
