@@ -45,7 +45,7 @@ app.use(express.static(publicDir));
 app.get("/", (req, res) => {
     res.json({
         status: true,
-        message: 'Welcome to TemplateCreator api',
+        message: 'Welcome to MeraLahore API',
         cheers: cool(),
     })
 });

@@ -1,6 +1,6 @@
 module.exports = {
-    Application: require('./application.model'),
-    User: require('./user.model'),
-    FormBuilder: require('./form-builder.model'),
-    Form: require('./form.model'),
+    Complaint: require('./complaint.model'),
+    GovernmentCenter: require('./governmentCenters.model'),
+    Representative: require('./representatives.model'),
+    ConstituencyBoundary: require('./constituencyBoundaries.model'),
 };
