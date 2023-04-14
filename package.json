@@ -2,7 +2,7 @@
   "name": "template-creator-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/HamzaBinSarfraz/template-creator-api",
+  "repository": "https://github.com/kintama48/MeraLahoreAPI",
   "author": "hamzabinsarfraz <muhammadameerhmza@gmail.com>",
   "license": "MIT",
   "dependencies": {
