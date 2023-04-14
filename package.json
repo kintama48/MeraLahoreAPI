@@ -1,9 +1,9 @@
 {
-  "name": "template-creator-api",
+  "name": "Mera Lahore API",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/kintama48/MeraLahoreAPI",
-  "author": "hamzabinsarfraz <muhammadameerhmza@gmail.com>",
+  "author": "kintama48 <abdullah.baig416@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
