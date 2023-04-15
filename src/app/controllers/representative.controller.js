@@ -36,9 +36,9 @@ const createRepresentative = async (req, res, next) => {
     }
 }
 
-const fetchAllRepresentatives = (req, res, next) => {
+const fetchAllRepresentatives = async (req, res, next) => {
     try {
-        const representatives = Representative.find().sort({createdAt: -1}).lean();
+        const representatives = await Representative.find().sort({createdAt: -1}).lean();
 
         res.status(200).json({
             status: true,
@@ -46,6 +46,7 @@ const fetchAllRepresentatives = (req, res, next) => {
             representatives,
         });
     } catch (error) {
+        console.log(error)
         next(error);
     }
 }

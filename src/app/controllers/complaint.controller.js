@@ -42,9 +42,9 @@ const createComplaint = async (req, res, next) => {
     }
 }
 
-const fetchAllComplaints = (req, res, next) => {
+const fetchAllComplaints = async (req, res, next) => {
     try {
-        const complaints = Complaint.find().sort({createdAt: -1}).lean();
+        const complaints = await Complaint.find().sort({createdAt: -1}).lean();
 
         res.status(200).json({
             status: true,

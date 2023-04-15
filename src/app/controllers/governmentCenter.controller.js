@@ -40,9 +40,9 @@ const createGovernmentCenter = async (req, res, next) => {
     }
 }
 
-const fetchAllGovernmentCenters = (req, res, next) => {
+const fetchAllGovernmentCenters = async (req, res, next) => {
     try {
-        const representatives = GovernmentCenter.find().sort({createdAt: -1}).lean();
+        const representatives = await GovernmentCenter.find().sort({createdAt: -1}).lean();
 
         res.status(200).json({
             status: true,
