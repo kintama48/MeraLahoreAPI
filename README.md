@@ -6,12 +6,6 @@ This is the official documentation page of Mera Lahore's API. Available routes a
     app.get('/complaints', fetchAllComplaints);
     app.delete('/complaints/:id', deleteComplaint);
     app.put('/complaints/:id', updateComplaint);
-
-## Constituency Boundary Routes:
-    app.post('/complaints', createComplaint);
-    app.get('/complaints', fetchAllComplaints);
-    app.delete('/complaints/:id', deleteComplaint);
-    app.put('/complaints/:id', updateComplaint);
     
 ## Government Centers Routes:
     app.post('/centers', createGovernmentCenter);
