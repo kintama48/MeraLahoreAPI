@@ -17,7 +17,6 @@ require('./src/config/db.config');
 app.use(cors());
 
 app.use(compression());
-
 // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 // app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -56,7 +55,7 @@ require('./src/utils/routes.utils')(app);
 const port = process.env.PORT;
 
 
-// initilizing server 😻
+// initializing server 😻
 app.listen(port, () =>
     console.log(`%s 🚀 Server is listening on port ${port} `, chalk.green('✓'))
 );
