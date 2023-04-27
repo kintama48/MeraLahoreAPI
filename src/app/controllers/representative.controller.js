@@ -7,7 +7,6 @@ const createRepresentative = async (req, res, next) => {
             address,
             telephone,
             ccId,
-            picResId
         } = req.body;
 
         // check if representative already exists
@@ -20,7 +19,6 @@ const createRepresentative = async (req, res, next) => {
 
         const representative = await Representative.create({
             name,
-            picResId,
             address,
             telephone,
             ccId,

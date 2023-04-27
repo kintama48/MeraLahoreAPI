@@ -6,7 +6,6 @@ const RepresentativesSchema = new Schema({
     address: {type: String},
     telephone: {type: String},
     ccId: { type: String, required: true },
-    picResId: {type: Number},
 }, {
     timestamps: true,
     versionKey: false,
