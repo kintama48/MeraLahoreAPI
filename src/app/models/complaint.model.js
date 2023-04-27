@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const complaintSchema = new Schema({
-    complaintId: { type: String, required: true, },
     complainantName: { type: String, required: true, },
     title: { type: String, required: true, },
     description: { type: String},
