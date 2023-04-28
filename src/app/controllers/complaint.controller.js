@@ -4,7 +4,6 @@ const createComplaint = async (req, res, next) => {
     try {
         const {
             complainantName,
-            title,
             description,
             telephone,
             email,
@@ -23,7 +22,6 @@ const createComplaint = async (req, res, next) => {
 
         let complaint = await Complaint.create({
             complainantName,
-            title,
             description,
             telephone,
             email,
