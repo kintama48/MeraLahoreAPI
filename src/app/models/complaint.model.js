@@ -8,7 +8,7 @@ const complaintSchema = new Schema({
     email: { type: String, required: true, },
     img: { type: String},
     status: { type: String, required: true, enum: ['pending', 'in-progress', 'resolved', 'rejected'], default: 'pending'},
-    ccId: [{ type: Object, required: true }],
+    ccId: { type: Object, required: true },
 }, {
     timestamps: true,
     versionKey: false,
