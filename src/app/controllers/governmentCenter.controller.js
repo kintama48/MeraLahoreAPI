@@ -64,28 +64,28 @@ const deleteGovernmentCenter = async (req, res, next) => {
     }
 }
 
-const findGovernmentCenter = async (req, res, next) => {
-    try {
-        const {
-            ppId, ucId, naId,
-        } = req.params;
+const findGovernmentCenters = async (req, res, next) => {
+  try {
+    const { ppId, ucId, naId } = req.params;
 
-        const governmentCenter = await GovernmentCenter.findOne({
-            $or: [{ppId: ppId}, {ucId: ucId}, {naId: naId},],
-        });
+    const governmentCenters = await GovernmentCenter.find({
+      $or: [{ "ccId.ppId": ppId }, { "ccId.ucId": ucId }, { "ccId.naId": naId }],
+    });
 
-        if (!governmentCenter) {
-            return res.status(404).json({
-                message: 'Government center not found',
-            });
-        }
-
-        res.status(200).json({
-            status: true, message: 'Government center found', governmentCenter,
-        });
-    } catch (error) {
-        next(error);
+    if (governmentCenters.length === 0) {
+      return res.status(404).json({
+        message: 'Government centers not found',
+      });
     }
+
+    res.status(200).json({
+      status: true,
+      message: 'Government centers found',
+      governmentCenters,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 
