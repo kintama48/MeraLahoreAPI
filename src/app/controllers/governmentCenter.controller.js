@@ -86,7 +86,7 @@ const findGovernmentCenters = async (req, res, next) => {
     }
 
     const governmentCenters = await GovernmentCenter.find({
-      $or: { "ccId.ppId": ppId }, { "ccId.ucId": ucId }, { "ccId.naId": naId },
+      $or: [{ "ccId.ppId": ppId }, { "ccId.ucId": ucId }, { "ccId.naId": naId }],
     });
 
     if (governmentCenters.length === 0) {
