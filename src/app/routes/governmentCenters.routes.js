@@ -3,13 +3,13 @@ const {
     fetchAllGovernmentCenters,
     deleteGovernmentCenter,
     updateGovernmentCenter,
-    findGovernmentCenter
+    findGovernmentCenters
 } = require("../controllers/governmentCenter.controller");
 
 module.exports = app => {
     app.post('/centers', createGovernmentCenter);
     app.get('/centers', fetchAllGovernmentCenters);
-    app.get('/centers/:id', findGovernmentCenter);
+    app.get('/centers/:id', findGovernmentCenters);
     app.delete('/centers/:id', deleteGovernmentCenter);
     app.put('/centers/:id', updateGovernmentCenter);
 }
