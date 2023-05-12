@@ -66,7 +66,24 @@ const deleteGovernmentCenter = async (req, res, next) => {
 
 const findGovernmentCenters = async (req, res, next) => {
   try {
-    const { ppId, ucId, naId } = req.params;
+    const { id } = req.params;  // NA-134, PP-23, UC-12
+    const [type, code] = id.split('-');
+
+    let ppId = null;
+    let ucId = null;
+    let naId = null;
+
+    switch (type.toLowerCase()) {
+        case 'pp':
+            ppId = code;
+            break;
+        case 'uc':
+            ucId = code;
+            break;
+        case 'na':
+            naId = code;
+            break;
+    }
 
     const governmentCenters = await GovernmentCenter.find({
       $or: [{ "ccId.ppId": ppId }, { "ccId.ucId": ucId }, { "ccId.naId": naId }],
