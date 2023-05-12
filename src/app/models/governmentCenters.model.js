@@ -7,7 +7,7 @@ const governmentCentersSchema = new Schema({
     longitude: { type: String, required: true, },
     telephone: { type: String, required: true, },
     type: { type: String, required: true, },
-    ccId: [{ type: Object, required: true }],
+    ccId: { type: Object, required: true },
 }, {
     timestamps: true,
     versionKey: false,
