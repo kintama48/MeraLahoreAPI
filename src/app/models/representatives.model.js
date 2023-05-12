@@ -5,7 +5,7 @@ const RepresentativesSchema = new Schema({
     name: { type: String, required: true },
     address: {type: String},
     telephone: {type: String},
-    ccId: { type: String, required: true },
+    ccid: { type: String, required: true },
 }, {
     timestamps: true,
     versionKey: false,

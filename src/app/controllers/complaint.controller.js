@@ -1,12 +1,13 @@
 const {Complaint, User} = require('../models');
 
+
 const createComplaint = async (req, res, next) => {
     try {
         const {
             complainantName, description, telephone, email, img, status, ccId,
         } = req.body;
 
-        // check if user already exists
+        // check if complaint already exists
         const complaintExists = await Complaint.exists({
             complainantName: complainantName,
             description: description,
@@ -35,7 +36,7 @@ const createComplaint = async (req, res, next) => {
 
 const fetchAllComplaints = async (req, res, next) => {
     try {
-        const complaints = await Complaint.find().sort({createdAt: -1}).lean();
+        const complaints = await Complaint.find().lean();
 
         res.status(200).json({
             status: true, message: 'Complaints fetched successfully', complaints,
@@ -48,7 +49,9 @@ const fetchAllComplaints = async (req, res, next) => {
 const updateComplaint = async (req, res, next) => {
     try {
         const {id} = req.params;
-        await Complaint.findByIdAndUpdate({_id: id,}, {$set: req.body,}, {new: true,});
+        await Complaint.findByIdAndUpdate(
+            {_id: id,}, {$set: req.body,}, {new: true,}
+        );
         res.status(200).json({
             status: true, message: 'Complaint updated successfully',
         });

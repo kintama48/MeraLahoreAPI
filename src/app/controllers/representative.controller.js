@@ -6,11 +6,11 @@ const createRepresentative = async (req, res, next) => {
             name,
             address,
             telephone,
-            ccId,
+            ccid,
         } = req.body;
 
         // check if representative already exists
-        const representativeE = await Representative.exists({ name: name, ccId: ccId });
+        const representativeE = await Representative.exists({ name: name, ccid: ccid });
         if (representativeE) {
             return res.status(400).json({
                 message: 'Representative already exists',
@@ -21,7 +21,7 @@ const createRepresentative = async (req, res, next) => {
             name,
             address,
             telephone,
-            ccId,
+            ccid,
         });
 
         res.status(201).json({
