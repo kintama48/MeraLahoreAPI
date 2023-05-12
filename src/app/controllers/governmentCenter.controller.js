@@ -94,5 +94,5 @@ module.exports = {
     fetchAllGovernmentCenters,
     updateGovernmentCenter,
     deleteGovernmentCenter,
-    findGovernmentCenter
+    findGovernmentCenters
 }
