@@ -88,26 +88,6 @@ const fetchAllComplaints = async (req, res, next) => {
   try {
     const complaints = await Complaint.find().lean();
 
-    complaints.map((complaint) => {
-      // add complaint to postgres
-      pool.query(
-        `INSERT INTO "Complaint" ("complainantName", description, telephone, email, img, status, "ccId",
-                                          "createdAt", "updatedAt")
-                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT DO NOTHING`,
-        [
-          complaint.complainantName,
-          complaint.description,
-          complaint.telephone,
-          complaint.email,
-          complaint.img,
-          complaint.status,
-          complaint.ccId,
-          complaint.createdAt,
-          complaint.updatedAt,
-        ]
-      );
-    });
-
     res.status(200).json({
       status: true,
       message: "Complaints fetched successfully",
