@@ -57,7 +57,7 @@ const port = process.env.PORT;
 
 // initializing server 😻
 app.listen(port, () =>
-    console.log(`%s 🚀 Server is listening on port ${port} `, chalk.green('✓'))
+    console.log(`%s Server is listening on port ${port} `, chalk.green('✓'))
 );
 
 // Handling non-existing routes
