@@ -21,7 +21,9 @@ const createComplaint = async (req, res, next) => {
     let { complainantName, description, telephone, email, img, status, ccId } =
       req.body;
 
-    img = img.split("?")[0];
+    if (img.includes("?")) {
+      img = img.split("?")[0];
+    }
 
     // check if complaint already exists
     const complaintExists = await Complaint.exists({
