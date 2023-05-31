@@ -7,9 +7,6 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  // database: process.env.DB_DB,
-  // schema: 'public',
-  // url: `postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:5432/${process.env.DB_DB}?schema=public`,
 });
 
 pool.connect().then(() => {
@@ -21,22 +18,15 @@ pool.connect().then(() => {
 
 const createComplaint = async (req, res, next) => {
   try {
-    const {
-      complainantName,
-      description,
-      telephone,
-      email,
-      img,
-      status,
-      ccId,
-    } = req.body;
+    let { complainantName, description, telephone, email, img, status, ccId } =
+      req.body;
+
+    img = img.split("?")[0];
 
     // check if complaint already exists
     const complaintExists = await Complaint.exists({
-      complainantName: complainantName,
       description: description,
-      telephone: telephone,
-      email: email,
+      img: img,
       status: status,
       ccId: ccId,
     });
