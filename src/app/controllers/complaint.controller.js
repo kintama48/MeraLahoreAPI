@@ -1,20 +1,48 @@
 const { Complaint } = require("../models");
-const { Pool } = require("pg");
 const chalk = require("chalk");
 require("dotenv").config();
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-});
+const fetchComplaintsByCCID = async (req, res, next) => {
+  try {
+    let ccId = req.params.id.toUpperCase();
+    const ccExists = await Complaint.exists({ ccId: ccId });
 
-pool.connect().then(() => {
-  console.log(`%s Connected to postgres`, chalk.green("✓"));
-  // pool.query(
-  //   "CREATE TABLE IF NOT EXISTS Complaint (id VARCHAR(255) PRIMARY KEY NOT NULL, complainantName VARCHAR(255), description VARCHAR(255) NOT NULL, telephone VARCHAR(255), email VARCHAR(255), img VARCHAR(255) NOT NULL, status VARCHAR(255) NOT NULL, ccId VARCHAR(255) NOT NULL, createdAt TIMESTAMP, updatedAt TIMESTAMP);"
-  // );
-});
+    if (!ccExists) {
+      return res.status(404).json({
+        message: "CCID not found",
+      });
+    }
+
+    const totalComplaints = await Complaint.countDocuments({ ccId: ccId });
+    const pendingComplaints = await Complaint.countDocuments({
+      ccId: ccId,
+      status: "pending",
+    });
+    const resolvedComplaints = await Complaint.countDocuments({
+      ccId: ccId,
+      status: "resolved",
+    });
+    const inProgressComplaints = await Complaint.countDocuments({
+      ccId: ccId,
+      status: "in-progress",
+    });
+
+    const complaints = await Complaint.find({ ccId: ccId }).lean();
+
+    res.status(200).json({
+      status: true,
+      message: "Complaints fetched successfully",
+      ccId: ccId,
+      totalComplaints: totalComplaints,
+      pendingComplaints: pendingComplaints,
+      resolvedComplaints: resolvedComplaints,
+      inProgressComplaints: inProgressComplaints,
+      complaints: complaints,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 const createComplaint = async (req, res, next) => {
   try {
@@ -53,24 +81,6 @@ const createComplaint = async (req, res, next) => {
       message: "Complaint created successfully",
       complaint,
     });
-
-    // add complaint to postgres
-    pool.query(
-      `INSERT INTO "Complaint" ("complainantName", description, telephone, email, img, status, "ccId",
-                                      "createdAt", "updatedAt")
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-      [
-        complaint.complainantName,
-        complaint.description,
-        complaint.telephone,
-        complaint.email,
-        complaint.img,
-        complaint.status,
-        complaint.ccId,
-        complaint.createdAt,
-        complaint.updatedAt,
-      ]
-    );
   } catch (error) {
     next(error);
   }
@@ -125,4 +135,5 @@ module.exports = {
   fetchAllComplaints,
   updateComplaint,
   deleteComplaint,
+  fetchComplaintsByCCID,
 };
