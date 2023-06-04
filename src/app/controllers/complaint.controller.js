@@ -46,8 +46,18 @@ const fetchComplaintsByCCID = async (req, res, next) => {
 
 const createComplaint = async (req, res, next) => {
   try {
-    let { complainantName, description, telephone, email, img, status, ccId } =
-      req.body;
+    let {
+      complainantName,
+      description,
+      telephone,
+      email,
+      img,
+      status,
+      ccId,
+      lat,
+      long,
+      address,
+    } = req.body;
 
     if (img.includes("?")) {
       img = img.split("?")[0];
@@ -74,6 +84,9 @@ const createComplaint = async (req, res, next) => {
       img,
       status,
       ccId,
+      lat,
+      long,
+      address,
     });
 
     res.status(201).json({

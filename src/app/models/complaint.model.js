@@ -9,6 +9,9 @@ const complaintSchema = new Schema({
     img: { type: String, required: true},
     status: { type: String, required: true, enum: ['pending', 'in-progress', 'resolved', 'rejected'], default: 'pending'},
     ccId: { type: String, required: true },
+    lat: { type: Number, required: true },
+    long: { type: Number, required: true },
+    address: { type: String, required: true },
 }, {
     timestamps: true,
     versionKey: false,
