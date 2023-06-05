@@ -10,11 +10,11 @@ const {
 
 module.exports = (app) => {
   app.get("/complaints", fetchAllComplaints);
-  app.post("/complaints/cc/:id", fetchComplaintsByCCID);
+  app.get("/complaints/cc/:id", fetchComplaintsByCCID);
   app.get("/complaints/cc", fetchComplaintsByConstituencies);
+  app.post("/complaints", createComplaint);
 
   app.get("/complaint/:id", fetchComplaintById);
   app.delete("/complaint/:id", deleteComplaint);
   app.put("/complaint/:id", updateComplaint);
-  app.post("/complaint", createComplaint);
 };
