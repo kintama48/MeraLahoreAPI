@@ -16,5 +16,5 @@ module.exports = (app) => {
 
   app.get("/complaint/:id", fetchComplaintById);
   app.delete("/complaint/:id", deleteComplaint);
-  app.put("/complaint/:id", updateComplaint);
+  app.patch("/complaint/:id", updateComplaint);
 };

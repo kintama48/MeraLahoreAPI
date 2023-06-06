@@ -173,11 +173,7 @@ const fetchAllComplaints = async (req, res, next) => {
 const updateComplaint = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Complaint.findByIdAndUpdate(
-      { _id: id },
-      { $set: req.body },
-      { new: true }
-    );
+    await Complaint.findByIdAndUpdate(id, { $set: req.body }, { new: true });
     res.status(200).json({
       status: true,
       message: "Complaint updated successfully",
